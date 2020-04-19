@@ -1,0 +1,27 @@
+<html>
+<body>
+
+<script>
+  /*Проверка, является ли комбинация палиндромом*/
+    test = prompt("Введите комбинацию для проверки", '');
+    testUpper = test.toUpperCase(); // единый регистр
+    // number = testUpper.match(/[^\s]/g).length; // подсчет числа знаков без учета пробелов
+    number = testUpper.length; // подсчет числа знаков с учетом пробелов
+    a = 0;
+      if (testUpper.charAt(a) == testUpper.charAt(number-1)) // сравнение первого и последнего символов
+    {
+        do {
+        a++;
+        number--;
+        }
+
+        while (a == number) {
+        alert( "Введенная комбинация - палиндром" )}
+    }
+    else {
+    alert( "Введенная комбинация не является палиндромом" )
+    }        
+</script>
+
+</body>
+</html>

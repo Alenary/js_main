@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     test = prompt("Введите комбинацию для проверки", '');
+     testUpper = test.toUpperCase(); // единый регистр
+    function reverseStr(str) {
+    return str.split("").reverse().join("");
+}
+    if (testUpper == reverseStr(testUpper)) // сравнение с записью наоборот
+        alert( "Введенная комбинация - палиндром" )
+    else
+        alert( "Введенная комбинация не является палиндромом" )
+      </script>
+</body>
+</html>
