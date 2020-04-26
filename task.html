@@ -8,88 +8,191 @@
 <body>
     <script>
 
-function error() { // проверка введенных чисел
+
+function error() { // проверка корректности введенных чисел
     for (i = 0; i < arguments.length; i++) {
         if (isNaN(arguments[i]) == true)
-        console.log("Значение " + (i + 1) + " не является числом"); else
-        {if (arguments[i] < 0) console.log("Значение " + (i + 1) + " меньше 0"); else
-            {if (arguments[i] == 0) console.log("Значение " + (i + 1) + " равно 0 или не введено"); else // перевод в численную форму пустого значения - 0
+        {console.log("Значение " + (i + 1) + " не является числом");
+        PASS = false;} else
+        {if (arguments[i] < 0) {console.log("Значение " + (i + 1) + " меньше 0"); 
+        PASS = false;}  else
+            {if (arguments[i] == 0) {console.log("Значение " + (i + 1) + " равно 0 или не введено"); // перевод в численную форму пустого значения - 0
+            PASS = false;} 
+             else 
             {if (Number.isInteger(arguments[i]) == false) 
-            {console.log("Значение " + (i + 1) + " не является целым");} else PASS = true;
+            {console.log("Значение " + (i + 1) + " не является целым");
+             PASS = false;} else PASS = true;
         }}}}
         }
-        let PASS;
+
+
         
     //   1 -  В бесконечном цикле делается запрос на ввод двух чисел (два отдельных вызова функции prompt()). Числа
     // сравниваются между собой, и выводится одна из трёх фраз: «числа равны», «первое число меньше», «второе
     // число меньше». Если пользователь ввёл не число, выводится фраза «первый ввод – не число» (или «второй ввод
     // – не число»), и выполнение скрипта прекращается.
         
-    // for (;;) {
-    //     A = +prompt("Введите первое число", '');
-    //     B = +prompt("Введите второе число", '');
-    //     if (isNaN(A))
-    //     {console.log("первый ввод – не число"); 
-    //     break;}
-    //     else 
-    //      {if (isNaN(B))
-    //     {console.log("второй ввод – не число");
-    //     break;}
-    //     else
-    //         { if (A == B)
-    //     console.log("числа равны");
-    //     else {
-    //         if (A > B) console.log("второе число меньше");
-    //         else console.log("первое число меньше");
-    //     }
-    //     }
-    //     }
-    //     }
+        
+    for (;;) {
+        A = +prompt("Введите первое число", '');
+        B = +prompt("Введите второе число", '');
+        if (isNaN(A))
+        {console.log("первый ввод – не число"); 
+        break;}
+        else 
+         {if (isNaN(B))
+        {console.log("второй ввод – не число");
+        break;}
+        else
+            { if (A == B)
+        console.log("числа равны");
+        else {
+            if (A > B) console.log("второе число меньше");
+            else console.log("первое число меньше");
+        }
+        }
+        }
+        }
 
 //         //   2 - Многоквартирный дом характеризуется следующими тремя показателями: этажность (1-25), число подъездов
 // //               (1-10), количество квартир на лестничной площадке (1-20). Скрипт запрашивает эти показатели и номер
 // //               квартиры. Выводится номер подъезда, в котором находится указанная квартира. При вводе некорректных данных
 // //               предусмотреть генерацию исключительных ситуаций.      
 
-// porch = +prompt("Введите число подъездов в доме", '');
-// floor = +prompt("Введите число этажей в доме", '');
-// flat = +prompt("Введите число квартир на площадке", '');
-// flatSearch = +prompt("Введите номер квартиры для проверки", '');
+porch = +prompt("Введите число подъездов в доме", '');
+floor = +prompt("Введите число этажей в доме", '');
+flat = +prompt("Введите число квартир на площадке", '');
+flatSearch = +prompt("Введите номер квартиры для проверки", '');
 
-// if ((porch >= 1 & porch <=10) & (floor >=1 & floor <=25) & (flat >=1 & flat <= 20))
-// {porchSearch =  (Math.trunc((Math.trunc(flatSearch / flat) + 1) / floor) + 1);
-// if (porchSearch <= porch)
-// console.log("Квартира номер " + flatSearch + " находится в подъезде " + porchSearch);
-// else console.log("В доме нет такой квартиры");
-// }
-// else 
-// {console.log("Что-то пошло не так:");
-// error(porch, floor, flat, flatSearch);}
+if ((porch >= 1 & porch <=10) & (floor >=1 & floor <=25) & (flat >=1 & flat <= 20))
+{porchSearch =  (Math.trunc((Math.trunc(flatSearch / flat) + 1) / floor) + 1);
+if (porchSearch <= porch)
+console.log("Квартира номер " + flatSearch + " находится в подъезде " + porchSearch);
+else console.log("В доме нет такой квартиры");
+}
+else 
+{console.log("Что-то пошло не так:");
+error(porch, floor, flat, flatSearch);}
 
 // 3 - Вычисление и вывод i-го числа Фибоначчи, где параметр i вводится пользователем. При вводе некорректного
 //               параметра предусмотреть генерацию исключительной ситуации.
 
-// item = +prompt("Введите параметр i", '');
+item = +prompt("Введите параметр i", '');
 
-// error(item);
-// a = 1;
-// b = 1;
-// if (PASS == true) 
-// {if (item > 2)
-// {for (n = 3; n <= item; n++)
-// {lastItem = a + b;
-//     a = b;
-//     b = lastItem;}
-//     console.log("Последнее число Фибоначчи " + lastItem)}
-// else {if (item == 2) console.log("Последнее число Фибоначчи 1"); else console.log("Число меньше двух")}}
+error(item);
+a = 1;
+b = 1;
+if (PASS == true) 
+{if (item > 2)
+{for (n = 3; n <= item; n++)
+{lastItem = a + b;
+    a = b;
+    b = lastItem;}
+    console.log("Последнее число Фибоначчи " + lastItem)}
+else {if (item == 2) console.log("Последнее число Фибоначчи 1"); else console.log("Число меньше двух")}}
 
 // 4 -  1 января 2018 был понедельник. Скрипт запрашивает номер месяца (1..12) и число в этом месяце (1..31).
 //               Выведите имя дня недели (например, «четверг») для введённого числа и месяца.
+
+month = +prompt("Укажите месяц", '')
+day = +prompt("Укажите день", '')
+
+error(month, day);
+if (PASS == true)
+{ if ((day >= 1 & day <= 31) & (month >=1 & month <= 30))
+{if ((month == 2 & day <= 28) || ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 ) & (day <= 31)) || ((month == 4 || month == 6 || month == 9 || month == 11 ) & (day <= 30)))
+{if (month == 1)
+    days = 0;
+    else {
+    if (month == 2)
+    days = 31;
+    else {
+    if (month == 3)
+    days = 31 + 28;
+    else {
+    if (month == 4)
+    days = 31 + 28 + 31;
+    else {
+    if (month == 5)
+    days = 31 + 28 + 31 + 30;
+    else {
+    if (month == 6)
+    days = 31 + 28 + 31 + 30 + 31;
+    else {
+    if (month == 7)
+    days = 31 + 28 + 31 + 30 + 31 + 30;
+    else {
+    if (month == 8)
+    days = 31 + 28 + 31 + 30 + 31 + 30 + 31;
+    else {
+    if (month == 9)
+    days = 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31;
+    else {
+    if (month == 10)
+    days = 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30;
+    else {
+    if (month == 11)
+    days = 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31;
+    else {
+    if (month == 12)
+    days = 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30; }}}}}}}}}}}
+    daysSum = days + day;
+    k = 0;
+    do {dayWeek = daysSum - 7*k;
+    k++; }
+    while (dayWeek > 7);
+    if (dayWeek == 1)
+    console.log("Понедельник");
+    else {    if (dayWeek == 2)
+    console.log("Вторник");
+    else {    if (dayWeek == 3)
+    console.log("Среда");
+    else {    if (dayWeek == 4)
+    console.log("Четверг");
+    else {    if (dayWeek == 5)
+    console.log("Пятница");
+    else {    if (dayWeek == 6)
+    console.log("Суббота");
+    else console.log("Воскресенье");
+    }}}}}
+    }
+    else console.log("Числа не входят в возможный диапазон");}
+    else console.log("Числа не входят в возможный диапазон");}
+
+    
 
 // 5-  Написать функцию, получающую на вход два числа. Если оба числа чётные - функция возвращает их произведение.
 //               Если оба числа нечётные - функция возвращает их сумму. Если одно из чисел чётное, а второе нечётное -
 //               функция возвращает это нечётное число.
 
-    </script>
+function even (number1, number2){
+
+if ((isNaN(number1)) == false & (isNaN(number2) == false))
+{
+    if ((number1 % 2 == 0) & (number2 % 2 == 0))
+    {console.log(number1*number2);
+        return number1*number2;}
+    else
+    {
+        if (number1 % 2 == 0)
+        { console.log(number2);
+            return number2;}
+        else 
+        {
+            if (number2 % 2 == 0)
+        {console.log(number1);
+            return number1;}
+        else {
+             console.log(number1+number2);
+             return number1+number2;}
+        }
+    }
+}
+else console.log("Нормально сделаете, нормально будет");
+}
+
+even(8,2);
+
+</script>
 </body>
 </html>
