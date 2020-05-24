@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 2 - На декартовой плоскости прямоугольник задаётся четырьмя точками – своими вершинами (у каждой точки две
+        //               числовые координаты). Вершины перечисляются последовательно, в порядке обхода по часовой стрелке, начиная с
+        //               произвольной вершины. 
+        //   Написать функцию, проверяющую, образуют ли заданные восемь чисел вершины некоего прямоугольника.
+
+
+        function rectangle() {
+            let errorAll = 0;
+            let checkPoint = 0;
+            let coordinates = [];
+            for (i = 0; i < 8; i++) {
+                coordinates.push(+prompt('Введите последовательно координаты для каждой точки (сначала x и y для первой, потом x и y для второй и т.д.)'))
+            }
+
+            function check() {
+                coordinatesDub = coordinates.slice() // дубль массива
+                for (i = 1; i < 8; i = i + 2) {
+                    n = 8 - i;
+                    if (coordinates[i] != coordinatesDub[n]) {
+                        checkPoint = 1;
+                        break;
+                    }
+                }
+
+                if (checkPoint == 0) {
+                    if ((coordinates[0] == coordinatesDub[2]) & (coordinates[4] == coordinatesDub[6]))
+                        checkPoint = 4;
+                    else console.log('Заданные восемь точек НЕ образуют вершины прямоугольника, код ошибки 1');
+                }
+
+                if (checkPoint == 1) {
+                    for (i = 0; i < 8; i = i + 2) {
+                        n = 6 - i;
+                        if (coordinates[i] != coordinatesDub[n]) {
+                            console.log('Заданные восемь точек НЕ образуют вершины прямоугольника, код ошибки 2');
+                            break;
+                        }
+                        else checkPoint = 3;
+                    }
+                }
+
+                if (checkPoint == 3) {
+                    if ((coordinates[1] == coordinatesDub[3]) & (coordinates[5] == coordinatesDub[7]))
+                        checkPoint = 5;
+                    else console.log('Заданные восемь точек НЕ образуют вершины прямоугольника, код ошибки 3');
+                }
+
+                if (checkPoint == 4) {
+                    if ((coordinates[1] != coordinatesDub[3]) & (coordinates[5] != coordinatesDub[7]))
+                        console.log('Заданные восемь точек образуют вершины прямоугольника');
+                    else console.log('Заданные восемь точек НЕ образуют вершины прямоугольника, код ошибки 4');
+                }
+
+
+                if (checkPoint == 5) {
+                    if ((coordinates[0] != coordinatesDub[2]) & (coordinates[4] != coordinatesDub[6]))
+                        console.log('Заданные восемь точек образуют вершины прямоугольника');
+                    else console.log('Заданные восемь точек НЕ образуют вершины прямоугольника, код ошибки 5');
+                }
+
+
+            }
+
+            for (i = 0; i < coordinates.length; i++) { // проверка введенных значений
+                if (isNaN(coordinates[i]) == true) {
+                    console.log('Значение ' + (i + 1) + ' введено не по тз');
+                    errorAll++;
+                }
+            }
+
+            if (errorAll == 0) check();
+
+        }
+
+        rectangle();
+
+    </script>
+</body>
+
+</html>
