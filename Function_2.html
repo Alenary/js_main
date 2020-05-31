@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 3 - Функция sequence(start, step) при вызове возвращает функцию-генератор. Каждый вызов генератора возвращает
+              новое число в числовой последовательности. start – стартовое число (по умолчанию 0). start – шаг приращения
+              (по умолчанию 1). Пример работы:
+              var generator = sequence(10, 3);</code>
+                <code>alert(generator()); // 10
+                <code>alert(generator()); // 13
+                <code>alert(generator()); // 16 */
+
+let i = 0;
+
+function generator(start, step) {
+    let end;
+    i++;
+    end = start + i*step;
+    return end;
+}
+
+function sequence(start, step) {
+alert(generator(start, step));
+alert(generator(start, step));
+return alert(generator(start, step));
+}
+
+sequence(10, 3);
+
+
+/* 4 -  Декоратор функции получает на вход существующую функцию и возвращает новую функцию, изменяющую
+              (дополняющую) поведение исходной.
+              1) 
+                  Создать декоратор для функции с одним параметром, дополняющий переданную функцию проверкой аргумента на
+                  тип number.
+              2)
+                  Создать декоратор для функции с произвольным количеством параметров, дополняющий переданную функцию
+                  проверкой всех аргумента на указанный тип. */
+
+function fun_1(y) { // не доделано
+    return y;
+    }
+
+function Decorator_1(func) {
+    return function(y) {
+        if ((typeof(y) == Number))
+            return console.log('Аргумент функции - число');
+            else return console.log('Аргумент функции - не число');
+    }
+}
+
+fun_1 = Decorator_1(fun_1);
+fun_1(1);
+
+
+/* 5 - Создайте функцию sum, которая будет возвращать сумму любого количества чисел. Вызываться функция должна вот
+              так (обратите внимание на скобки):
+              x = sum(2)(5)(10);
+                alert(x); // выводит 17 */
+
+function sum(a) {
+
+let counterSum = a;
+function funSum(b) {
+  counterSum = counterSum + b;
+  console.log(counterSum);
+  return funSum;
+}
+
+funSum[Symbol.toPrimitive] = function(hint) {
+  return counterSum;
+};
+
+return funSum;
+}
+
+x = sum(2)(5)(10);
+alert(x); // выводит 17
+    </script>
+</body>
+</html>
