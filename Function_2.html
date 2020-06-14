@@ -42,20 +42,43 @@ sequence(10, 3);
                   Создать декоратор для функции с произвольным количеством параметров, дополняющий переданную функцию
                   проверкой всех аргумента на указанный тип. */
 
-function fun_1(y) { // не доделано
-    return y;
+                  // Вариант 1
+
+var wrapped = function fun_1(y) {
+    return a = y + 1;
     }
 
 function Decorator_1(func) {
-    return function(y) {
-        if ((typeof(y) == Number))
+    return function(y) { // замыкание
+        let result = func(y);
+        if (typeof result == 'number')
             return console.log('Аргумент функции - число');
-            else return console.log('Аргумент функции - не число');
+            else return console.log('Аргумент функции - НЕ число');
     }
 }
 
-fun_1 = Decorator_1(fun_1);
-fun_1(1);
+                    //Вариант 2
+
+wrapped = Decorator_1(wrapped);
+wrapped(5);
+
+var wrapped_2 = function fun_2() {
+    return 10;
+    }
+
+function Decorator_2(func_2) {
+    return function() { // замыкание
+        let result_2 = func_2.apply(this, arguments);
+        for (i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'number')
+            console.log('Аргумент ' + (i+1) + ' функции - число');
+            else console.log('Аргумент ' + (i+1) + ' функции - НЕ число');
+        }
+    }
+}
+
+wrapped_2 = Decorator_2(wrapped_2);
+wrapped_2(5,6,5, "лето");
 
 
 /* 5 - Создайте функцию sum, которая будет возвращать сумму любого количества чисел. Вызываться функция должна вот
@@ -68,7 +91,6 @@ function sum(a) {
 let counterSum = a;
 function funSum(b) {
   counterSum = counterSum + b;
-  console.log(counterSum);
   return funSum;
 }
 
@@ -81,6 +103,7 @@ return funSum;
 
 x = sum(2)(5)(10);
 alert(x); // выводит 17
+
     </script>
 </body>
 </html>
